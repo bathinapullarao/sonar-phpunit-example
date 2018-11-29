@@ -13,17 +13,11 @@ pipeline {
 				}
 			}
 		}
-		stage ('Test') {
-			steps {
-			script {
-				sh "phpunit --bootstrap src/Math.php tests/SomeTest.php"
-				}
-			}
-		}
 		stage ('sonar') {
 			steps {
 			node ('master') {
 				withSonarQubeEnv('sonar') {
+					sh "phpunit --bootstrap src/Math.php tests/SomeTest.php"
 					sh '${scannerHome}/bin/sonar-scanner'
 				}
 			}	}

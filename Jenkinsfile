@@ -19,7 +19,6 @@ pipeline {
 				sh "phpunit --bootstrap src/Math.php tests/SomeTest.php"
 				}
 			}
-			}
 		}
 		stage ('sonar') {
 			steps {

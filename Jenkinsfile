@@ -17,7 +17,7 @@ pipeline {
 			steps {
 			node ('master') {
 				withSonarQubeEnv('sonar') {
-					sh '"phpunit --bootstrap src/Math.php tests/SomeTest.php"'
+					sh 'phpunit --bootstrap src/Math.php tests/SomeTest.php'
 					/*sh '${scannerHome}/bin/sonar-scanner'*/
 					}
 			}	}

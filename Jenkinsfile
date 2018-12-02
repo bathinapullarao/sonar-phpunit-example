@@ -19,7 +19,7 @@ pipeline {
 				withSonarQubeEnv('sonar') {
 					/*sh '"phpunit --bootstrap src/Math.php tests/SomeTest.php" -e | echo "ignore failure"'  */
 					try{
-					     sh '"phpunit --bootstrap src/Math.php tests/SomeTest.php"
+					     sh '"phpunit --bootstrap src/Math.php tests/SomeTest.php"'
 					}
 					catch(error)
 					{

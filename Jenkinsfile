@@ -18,16 +18,8 @@ pipeline {
 			node ('master') {
 				withSonarQubeEnv('sonar') {
 					sh '"phpunit --bootstrap src/Math.php tests/SomeTest.php"'
-					sh '${scannerHome}/bin/sonar-scanner'
-					sh 'echo "phpunt performed"'
-					/*try{
-					     sh '"phpunit --bootstrap src/Math.php tests/SomeTest.php"'
+					/*sh '${scannerHome}/bin/sonar-scanner'*/
 					}
-					catch(error)
-					{
-					sh '${scannerHome}/bin/sonar-scanner'
-					}*/
-				}
 			}	}
 		}
 		stage ('sleep') {

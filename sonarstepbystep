@@ -1,0 +1,41 @@
+https://www.vultr.com/docs/how-to-install-sonarqube-on-centos-7
+https://tecadmin.net/install-mysql-5-on-ubuntu/
+ram 2gb
+disk 50gb
+install java1.8
+install mysql in ubento <-- https://tecadmin.net/install-mysql-5-on-ubuntu/
+wget http://repo.mysql.com/mysql-apt-config_0.8.9-1_all.deb
+sudo dpkg -i mysql-apt-config_0.8.9-1_all.deb
+sudo apt-get update
+sudo apt-get install mysql-server
+mysql_secure_installation
+mysql -u root -p
+password:admin
+CREATE USER ‘sonar’ IDENTIFIED BY ‘sonar';
+GRANT ALL ON sonar.* TO ‘sonar’@’%’ IDENTIFIED BY ‘sonar';
+GRANT ALL ON sonar.* TO ‘sonar’@’localhost’ IDENTIFIED BY ‘sonar';
+//show databases;  //use mysql;  //show tables; //select * from tablename;
+
+
+cd /opt/
+wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-7.4.zip
+unzip sonarqube-7.4.zip
+cat /etc/passwd
+useradd sonar
+passwd sonar
+chown -R sonar:sonar sonarqube-7.4
+cd sonarqube7.4
+cd conf
+vi sonar.properties
+sonar.jdbc.username=sonar
+sonar.jdbc.password=sonar
+sonar.jdbc.url=remove # in above to also
+:wq
+cd ../bin
+cd linux-x86-64
+vi sonar.sh
+RUN_AS_USER=sonar
+:wq
+netstat -nltp
+/etc/init.d/mysql start
+./sonar.sh start
